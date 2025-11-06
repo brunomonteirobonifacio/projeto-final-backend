@@ -15,7 +15,7 @@ public class Musica {
     private String nome;
 
     @Column(name = "duracao_em_segundos")
-    private float duracaoEmSegundos;
+    private Integer duracaoEmSegundos;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "artista_id", foreignKey = @ForeignKey(name = "fk_musica_artista"))
@@ -41,11 +41,11 @@ public class Musica {
         this.nome = nome;
     }
 
-    public float getDuracaoEmSegundos() {
+    public Integer getDuracaoEmSegundos() {
         return duracaoEmSegundos;
     }
 
-    public void setDuracaoEmSegundos(float duracaoEmSegundos) {
+    public void setDuracaoEmSegundos(Integer duracaoEmSegundos) {
         this.duracaoEmSegundos = duracaoEmSegundos;
     }
 
