@@ -1,4 +1,4 @@
 package com.example.projetofinal.DTO;
 
-public class GeneroDTO {
+public class MusicaDTO {
 }

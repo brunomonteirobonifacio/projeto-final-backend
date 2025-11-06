@@ -1,4 +1,4 @@
 package com.example.projetofinal.repository;
 
-public interface GeneroRepository {
+public interface ArtistaRepository {
 }
