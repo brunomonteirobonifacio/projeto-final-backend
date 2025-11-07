@@ -28,7 +28,8 @@ public class MusicaController {
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(defaultValue = "nome") String sortBy,
-            @RequestParam(defaultValue = "asc") String direction
+            @RequestParam(defaultValue = "asc") String direction,
+            @RequestParam(required = false) String nomeFiltro
     ) {
         Sort sort = direction.equalsIgnoreCase("asc")
                 ? Sort.by(sortBy).ascending()
@@ -36,7 +37,7 @@ public class MusicaController {
 
         Pageable pageable = PageRequest.of(page, size, sort);
 
-        return musicaService.getAll(pageable);
+        return musicaService.list(nomeFiltro, pageable);
     }
 
     @GetMapping("/{id}")

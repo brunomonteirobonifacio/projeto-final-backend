@@ -1,6 +1,8 @@
 package com.example.projetofinal.repository;
 
 import com.example.projetofinal.model.Musica;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,4 +10,5 @@ import java.util.UUID;
 
 @Repository
 public interface MusicaRepository extends JpaRepository<Musica, UUID> {
+    Page<Musica> findByNomeContainingIgnoreCase(String nome, Pageable pageable);
 }

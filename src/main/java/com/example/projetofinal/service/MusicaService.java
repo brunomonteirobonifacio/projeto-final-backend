@@ -23,8 +23,8 @@ public class MusicaService {
 //    @Autowired
 //    private GeneroRepository generoRepository;
 
-    public Page<Musica> getAll(Pageable pageable) {
-        return musicaRepository.findAll(pageable);
+    public Page<Musica> list(String nomeFiltro, Pageable pageable) {
+        return musicaRepository.findByNomeContainingIgnoreCase(nomeFiltro, pageable);
     }
 
     public MusicaDTO findById(UUID id) {
