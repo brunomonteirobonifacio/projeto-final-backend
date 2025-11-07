@@ -24,7 +24,7 @@ public class MusicaController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public Page<Musica> getAll(
+    public Page<Musica> list(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(defaultValue = "nome") String sortBy,
