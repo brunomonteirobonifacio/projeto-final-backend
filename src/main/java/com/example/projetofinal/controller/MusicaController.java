@@ -2,6 +2,7 @@ package com.example.projetofinal.controller;
 
 import com.example.projetofinal.dto.MusicaCreateDTO;
 import com.example.projetofinal.dto.MusicaDTO;
+import com.example.projetofinal.dto.MusicaUpdateDTO;
 import com.example.projetofinal.model.Musica;
 import com.example.projetofinal.service.MusicaService;
 import jakarta.validation.Valid;
@@ -50,5 +51,11 @@ public class MusicaController {
     @ResponseStatus(HttpStatus.CREATED)
     public MusicaDTO save(@RequestBody @Valid MusicaCreateDTO dto) {
         return musicaService.create(dto);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public MusicaDTO update(@RequestParam UUID id, @RequestBody @Valid MusicaUpdateDTO dto) {
+        return musicaService.update(id, dto);
     }
 }
