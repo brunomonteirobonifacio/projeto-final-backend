@@ -1,6 +1,7 @@
 package com.example.projetofinal.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.UUID;
 
@@ -11,6 +12,7 @@ public class Genero {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @NotNull
     @Column(name = "nome")
     private String nome;
 

@@ -1,6 +1,7 @@
 package com.example.projetofinal.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.UUID;
 
@@ -11,6 +12,7 @@ public class Artista {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @NotNull
     @Column
     private String nome;
 
