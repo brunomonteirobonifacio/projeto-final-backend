@@ -43,7 +43,7 @@ public class MusicaController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public MusicaDTO findById(@RequestParam UUID id) {
+    public MusicaDTO findById(@PathVariable UUID id) {
         return musicaService.findById(id);
     }
 
@@ -55,7 +55,7 @@ public class MusicaController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public MusicaDTO update(@RequestParam UUID id, @RequestBody @Valid MusicaUpdateDTO dto) {
+    public MusicaDTO update(@PathVariable UUID id, @RequestBody @Valid MusicaUpdateDTO dto) {
         return musicaService.update(id, dto);
     }
 }
