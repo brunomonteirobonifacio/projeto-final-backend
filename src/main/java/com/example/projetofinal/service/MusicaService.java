@@ -3,6 +3,7 @@ package com.example.projetofinal.service;
 import com.example.projetofinal.dto.MusicaCreateDTO;
 import com.example.projetofinal.dto.MusicaDTO;
 import com.example.projetofinal.dto.MusicaUpdateDTO;
+import com.example.projetofinal.exception.NotFoundException;
 import com.example.projetofinal.model.Artista;
 import com.example.projetofinal.model.Genero;
 import com.example.projetofinal.model.Musica;
@@ -35,8 +36,7 @@ public class MusicaService {
     public MusicaDTO findById(UUID id) {
         return musicaRepository.findById(id)
                 .map(this::toDTO)
-//                .orElse(() -> new RuntimeException("Música não encontrada"));
-                .orElse(null);
+                .orElseThrow(() -> new NotFoundException("Música não encontrada"));
     }
 
     public MusicaDTO create(MusicaCreateDTO musicaDTO) {
@@ -57,13 +57,13 @@ public class MusicaService {
 
     public MusicaDTO update(UUID id, MusicaUpdateDTO dto) {
         Musica musica = musicaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Música não encontrada"));
+                .orElseThrow(() -> new NotFoundException("Música não encontrada"));
 
         musica.setDuracaoEmSegundos(dto.getDuracaoEmSegundos());
 
         if (!musica.getGenero().getId().equals(dto.getGeneroId())) {
             Genero genero = generoRepository.findById(dto.getGeneroId())
-                    .orElseThrow(() -> new RuntimeException("Gênero não encontrado"));
+                    .orElseThrow(() -> new NotFoundException("Gênero não encontrado"));
 
             musica.setGenero(genero);
         }
