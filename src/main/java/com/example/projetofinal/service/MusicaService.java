@@ -12,6 +12,7 @@ import com.example.projetofinal.repository.GeneroRepository;
 import com.example.projetofinal.repository.MusicaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -29,8 +30,17 @@ public class MusicaService {
     @Autowired
     private GeneroRepository generoRepository;
 
-    public Page<Musica> list(String nomeFiltro, Pageable pageable) {
-        return musicaRepository.findByNomeContainingIgnoreCase(nomeFiltro, pageable);
+    public Page<MusicaDTO> list(String nomeFiltro, Pageable pageable) {
+        Page<Musica> musicasPage = musicaRepository.findByNomeContainingIgnoreCase(nomeFiltro, pageable);
+
+        return new PageImpl<>(
+                musicasPage.getContent()
+                        .stream()
+                        .map(this::toDTO)
+                        .toList(),
+                musicasPage.getPageable(),
+                musicasPage.getTotalElements()
+        );
     }
 
     public MusicaDTO findById(UUID id) {
