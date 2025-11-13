@@ -3,7 +3,11 @@ package com.example.projetofinal.service;
 import com.example.projetofinal.dto.MusicaCreateDTO;
 import com.example.projetofinal.dto.MusicaDTO;
 import com.example.projetofinal.dto.MusicaUpdateDTO;
+import com.example.projetofinal.model.Artista;
+import com.example.projetofinal.model.Genero;
 import com.example.projetofinal.model.Musica;
+import com.example.projetofinal.repository.ArtistaRepository;
+import com.example.projetofinal.repository.GeneroRepository;
 import com.example.projetofinal.repository.MusicaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,11 +22,11 @@ public class MusicaService {
     @Autowired
     private MusicaRepository musicaRepository;
 
-//    @Autowired
-//    private ArtistaRepository artistaRepository;
+    @Autowired
+    private ArtistaRepository artistaRepository;
 
-//    @Autowired
-//    private GeneroRepository generoRepository;
+    @Autowired
+    private GeneroRepository generoRepository;
 
     public Page<Musica> list(String nomeFiltro, Pageable pageable) {
         return musicaRepository.findByNomeContainingIgnoreCase(nomeFiltro, pageable);
@@ -57,20 +61,19 @@ public class MusicaService {
 
         musica.setDuracaoEmSegundos(dto.getDuracaoEmSegundos());
 
-//        TODO: descomentar quando artistaRepository e generoRepository estiverem criados
-//        if (!musica.getGenero().getId().equals(dto.getGeneroId())) {
-//            Genero genero = generoRepository.findById(dto.getGeneroId())
-//                    .orElseThrow(() -> new RuntimeException("Gênero não encontrado"));
+        if (!musica.getGenero().getId().equals(dto.getGeneroId())) {
+            Genero genero = generoRepository.findById(dto.getGeneroId())
+                    .orElseThrow(() -> new RuntimeException("Gênero não encontrado"));
 
-//            musica.setGenero(genero);
-//        }
+            musica.setGenero(genero);
+        }
 
-//        if (!musica.getArtista().getId().equals(dto.getArtistaId())) {
-//            Artista artista = artistaRepository.findById(dto.getArtistaId())
-//                    .orElseThrow(() -> new RuntimeException("Artista não encontrado"));
-//
-//            musica.setArtista(artista);
-//        }
+        if (!musica.getArtista().getId().equals(dto.getArtistaId())) {
+            Artista artista = artistaRepository.findById(dto.getArtistaId())
+                    .orElseThrow(() -> new RuntimeException("Artista não encontrado"));
+
+            musica.setArtista(artista);
+        }
 
         Musica musicaUpdated = musicaRepository.save(musica);
         return toDTO(musicaUpdated);
@@ -81,16 +84,15 @@ public class MusicaService {
         musica.setNome(dto.getNome());
         musica.setDuracaoEmSegundos(dto.getDuracaoEmSegundos());
 
-//        TODO: descomentar quando artistaRepository e generoRepository estiverem criados
-//        Artista artista = artistaRepository.findById(dto.getArtistaId())
-//                .orElseThrow(() -> new RuntimeException("Artista não encontrado"));
+        Artista artista = artistaRepository.findById(dto.getArtistaId())
+                .orElseThrow(() -> new RuntimeException("Artista não encontrado"));
 
-//        musica.setArtista(artista);
+        musica.setArtista(artista);
 
-//        Genero genero = generoRepository.findById(dto.getGeneroId())
-//                .orElseThrow(() -> new RuntimeException("Gênero não encontrado"));
+        Genero genero = generoRepository.findById(dto.getGeneroId())
+                .orElseThrow(() -> new RuntimeException("Gênero não encontrado"));
 
-//        musica.setGenero(genero);
+        musica.setGenero(genero);
 
         return musica;
     }
