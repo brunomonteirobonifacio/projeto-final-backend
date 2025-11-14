@@ -1,5 +1,6 @@
 package com.example.projetofinal.controller;
 
+import com.example.projetofinal.dto.genero.GeneroCreateDTO;
 import com.example.projetofinal.dto.genero.GeneroDTO;
 import com.example.projetofinal.service.GeneroService;
 import jakarta.validation.Valid;
@@ -46,7 +47,7 @@ public class GeneroController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public GeneroDTO save(@RequestBody @Valid GeneroDTO dto) {
+    public GeneroDTO save(@RequestBody @Valid GeneroCreateDTO dto) {
         return generoService.create(dto);
     }
 

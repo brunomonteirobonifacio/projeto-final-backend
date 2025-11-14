@@ -1,5 +1,6 @@
 package com.example.projetofinal.service;
 
+import com.example.projetofinal.dto.genero.GeneroCreateDTO;
 import com.example.projetofinal.dto.genero.GeneroDTO;
 import com.example.projetofinal.exception.NotFoundException;
 import com.example.projetofinal.model.Genero;
@@ -39,7 +40,7 @@ public class GeneroService {
                 );
     }
 
-    public GeneroDTO create(GeneroDTO dto) {
+    public GeneroDTO create(GeneroCreateDTO dto) {
         Genero genero = toEntity(dto);
         genero = generoRepository.save(genero);
         return toDTO(genero);
@@ -73,7 +74,7 @@ public class GeneroService {
         return dto;
     }
 
-    private Genero toEntity(GeneroDTO dto) {
+    private Genero toEntity(GeneroCreateDTO dto) {
         Genero genero = new Genero();
         genero.setNome(dto.getNome());
         return genero;
