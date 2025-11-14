@@ -80,7 +80,7 @@ public class MusicaService {
 
         if (!musica.getArtista().getId().equals(dto.getArtistaId())) {
             Artista artista = artistaRepository.findById(dto.getArtistaId())
-                    .orElseThrow(() -> new RuntimeException("Artista não encontrado"));
+                    .orElseThrow(() -> new NotFoundException("Artista não encontrado"));
 
             musica.setArtista(artista);
         }
@@ -95,7 +95,7 @@ public class MusicaService {
         musica.setDuracaoEmSegundos(dto.getDuracaoEmSegundos());
 
         Artista artista = artistaRepository.findById(dto.getArtistaId())
-                .orElseThrow(() -> new RuntimeException("Artista não encontrado"));
+                .orElseThrow(() -> new NotFoundException("Artista não encontrado"));
 
         musica.setArtista(artista);
 
