@@ -2,22 +2,22 @@ package com.example.projetofinal.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Positive;
 
 import java.util.UUID;
 
 public class MusicaCreateDTO {
-    @NotBlank
+    @NotBlank(message = "É necessário informar o nome da música")
     private String nome;
 
-    @NotNull
-    @Size
+    @NotNull(message = "É necessário informar a duração em segundos da música")
+    @Positive(message = "Duração da música não pode ser negativa")
     private Integer duracaoEmSegundos;
 
-    @NotNull
+    @NotNull(message = "É necessário informar o artista da música")
     private UUID artistaId;
 
-    @NotNull
+    @NotNull(message = "É necessário informar o gênero da música")
     private UUID generoId;
 
     public String getNome() {
