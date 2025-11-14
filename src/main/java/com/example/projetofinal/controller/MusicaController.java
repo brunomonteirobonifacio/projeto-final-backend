@@ -58,4 +58,10 @@ public class MusicaController {
     public MusicaDTO update(@PathVariable UUID id, @RequestBody @Valid MusicaUpdateDTO dto) {
         return musicaService.update(id, dto);
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable UUID id) {
+        musicaService.delete(id);
+    }
 }

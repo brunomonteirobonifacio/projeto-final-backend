@@ -89,6 +89,13 @@ public class MusicaService {
         return toDTO(musicaUpdated);
     }
 
+    public void delete(UUID id) {
+        Musica musica = musicaRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Não foi possível encontrar a música com o ID informado"));
+
+        musicaRepository.delete(musica);
+    }
+
     private Musica toEntity(MusicaCreateDTO dto) {
         Musica musica = new Musica();
         musica.setNome(dto.getNome());
