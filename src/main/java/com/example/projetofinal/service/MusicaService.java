@@ -46,7 +46,7 @@ public class MusicaService {
     public MusicaDTO findById(UUID id) {
         return musicaRepository.findById(id)
                 .map(this::toDTO)
-                .orElseThrow(() -> new NotFoundException("Música não encontrada"));
+                .orElseThrow(() -> new NotFoundException("Não foi possível encontrar a música com o ID informado"));
     }
 
     public MusicaDTO create(MusicaCreateDTO musicaDTO) {
@@ -67,20 +67,20 @@ public class MusicaService {
 
     public MusicaDTO update(UUID id, MusicaUpdateDTO dto) {
         Musica musica = musicaRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Música não encontrada"));
+                .orElseThrow(() -> new NotFoundException("Não foi possível encontrar a música com o ID informado"));
 
         musica.setDuracaoEmSegundos(dto.getDuracaoEmSegundos());
 
         if (!musica.getGenero().getId().equals(dto.getGeneroId())) {
             Genero genero = generoRepository.findById(dto.getGeneroId())
-                    .orElseThrow(() -> new NotFoundException("Gênero não encontrado"));
+                    .orElseThrow(() -> new NotFoundException("Não foi possível encontrar o gênero com o ID informado"));
 
             musica.setGenero(genero);
         }
 
         if (!musica.getArtista().getId().equals(dto.getArtistaId())) {
             Artista artista = artistaRepository.findById(dto.getArtistaId())
-                    .orElseThrow(() -> new NotFoundException("Artista não encontrado"));
+                    .orElseThrow(() -> new NotFoundException("Não foi possível encontrar o artista com o ID informado"));
 
             musica.setArtista(artista);
         }
@@ -95,12 +95,12 @@ public class MusicaService {
         musica.setDuracaoEmSegundos(dto.getDuracaoEmSegundos());
 
         Artista artista = artistaRepository.findById(dto.getArtistaId())
-                .orElseThrow(() -> new NotFoundException("Artista não encontrado"));
+                .orElseThrow(() -> new NotFoundException("Não foi possível encontrar o artista com o ID informado"));
 
         musica.setArtista(artista);
 
         Genero genero = generoRepository.findById(dto.getGeneroId())
-                .orElseThrow(() -> new RuntimeException("Gênero não encontrado"));
+                .orElseThrow(() -> new NotFoundException("Não foi possível encontrar o gênero com o ID informado"));
 
         musica.setGenero(genero);
 
