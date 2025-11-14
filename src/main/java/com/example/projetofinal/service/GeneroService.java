@@ -1,6 +1,6 @@
 package com.example.projetofinal.service;
 
-import com.example.projetofinal.dto.GeneroDTO;
+import com.example.projetofinal.dto.genero.GeneroDTO;
 import com.example.projetofinal.exception.NotFoundException;
 import com.example.projetofinal.model.Genero;
 import com.example.projetofinal.repository.GeneroRepository;

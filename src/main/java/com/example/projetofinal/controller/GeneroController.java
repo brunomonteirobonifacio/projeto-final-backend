@@ -1,6 +1,6 @@
 package com.example.projetofinal.controller;
 
-import com.example.projetofinal.dto.GeneroDTO;
+import com.example.projetofinal.dto.genero.GeneroDTO;
 import com.example.projetofinal.service.GeneroService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

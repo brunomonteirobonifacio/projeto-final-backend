@@ -1,11 +1,13 @@
-package com.example.projetofinal.dto;
+package com.example.projetofinal.dto.genero;
 
+import jakarta.validation.constraints.NotBlank;
 import java.util.UUID;
 
-public class MusicaDTO {
+public class GeneroDTO {
     private UUID id;
+
+    @NotBlank
     private String nome;
-    private Integer duracaoEmSegundos;
 
     public UUID getId() {
         return id;
@@ -21,13 +23,5 @@ public class MusicaDTO {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public Integer getDuracaoEmSegundos() {
-        return duracaoEmSegundos;
-    }
-
-    public void setDuracaoEmSegundos(Integer duracaoEmSegundos) {
-        this.duracaoEmSegundos = duracaoEmSegundos;
     }
 }

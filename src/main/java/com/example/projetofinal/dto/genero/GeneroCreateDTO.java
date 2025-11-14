@@ -1,4 +1,4 @@
-package com.example.projetofinal.dto;
+package com.example.projetofinal.dto.genero;
 
 import jakarta.validation.constraints.NotBlank;
 

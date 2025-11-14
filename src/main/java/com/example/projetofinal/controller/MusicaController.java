@@ -1,9 +1,8 @@
 package com.example.projetofinal.controller;
 
-import com.example.projetofinal.dto.MusicaCreateDTO;
-import com.example.projetofinal.dto.MusicaDTO;
-import com.example.projetofinal.dto.MusicaUpdateDTO;
-import com.example.projetofinal.model.Musica;
+import com.example.projetofinal.dto.musica.MusicaCreateDTO;
+import com.example.projetofinal.dto.musica.MusicaDTO;
+import com.example.projetofinal.dto.musica.MusicaUpdateDTO;
 import com.example.projetofinal.service.MusicaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

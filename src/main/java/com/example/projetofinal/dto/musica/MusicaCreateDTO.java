@@ -1,4 +1,4 @@
-package com.example.projetofinal.dto;
+package com.example.projetofinal.dto.musica;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
