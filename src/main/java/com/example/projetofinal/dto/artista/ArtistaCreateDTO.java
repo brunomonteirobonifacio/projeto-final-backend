@@ -2,22 +2,10 @@ package com.example.projetofinal.dto.artista;
 
 import jakarta.validation.constraints.NotBlank;
 
-import java.util.UUID;
-
-public class ArtistaDTO {
-
-    private UUID id;
+public class ArtistaCreateDTO {
 
     @NotBlank(message = "É necessário informar o nome do artista")
     private String nome;
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
 
     public String getNome() {
         return nome;
