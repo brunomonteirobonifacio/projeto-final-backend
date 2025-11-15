@@ -1,5 +1,7 @@
 package com.example.projetofinal.service;
 
+import com.example.projetofinal.dto.artista.ArtistaDTO;
+import com.example.projetofinal.dto.genero.GeneroDTO;
 import com.example.projetofinal.dto.musica.MusicaCreateDTO;
 import com.example.projetofinal.dto.musica.MusicaDTO;
 import com.example.projetofinal.dto.musica.MusicaUpdateDTO;
@@ -63,6 +65,20 @@ public class MusicaService {
         dto.setId(musica.getId());
         dto.setNome(musica.getNome());
         dto.setDuracaoEmSegundos(musica.getDuracaoEmSegundos());
+
+        Genero genero = musica.getGenero();
+        GeneroDTO generoDto = new GeneroDTO();
+        generoDto.setId(genero.getId());
+        generoDto.setNome(genero.getNome());
+
+        dto.setGenero(generoDto);
+
+        Artista artista = musica.getArtista();
+        ArtistaDTO artistaDto = new ArtistaDTO();
+        artistaDto.setId(artista.getId());
+        artistaDto.setNome(artista.getNome());
+
+        dto.setArtista(artistaDto);
 
         return dto;
     }
