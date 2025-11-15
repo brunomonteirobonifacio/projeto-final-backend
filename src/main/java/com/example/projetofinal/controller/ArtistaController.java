@@ -31,10 +31,16 @@ public class ArtistaController {
     public Page<ArtistaDTO> listAll(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
-            @RequestParam(defaultValue = "nome") String sort
+            @RequestParam(defaultValue = "nome") String sortBy,
+            @RequestParam(defaultValue = "asc") String direction,
+            @RequestParam(required = false) String nomeFiltro
     ) {
-        Pageable pageable = PageRequest.of(page, size, Sort.by(sort));
-        return artistaService.listAll(pageable);
+        Sort sort = direction.equalsIgnoreCase("asc")
+                ? Sort.by(sortBy).ascending()
+                : Sort.by(sortBy).descending();
+
+        Pageable pageable = PageRequest.of(page, size, sort);
+        return artistaService.list(nomeFiltro, pageable);
     }
 
     @GetMapping("/{id}")

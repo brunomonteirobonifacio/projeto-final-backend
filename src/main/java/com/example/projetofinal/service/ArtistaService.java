@@ -27,8 +27,10 @@ public class ArtistaService {
         return toDTO(artista);
     }
 
-    public Page<ArtistaDTO> listAll(Pageable pageable) {
-        Page<Artista> page = artistaRepository.findAll(pageable);
+    public Page<ArtistaDTO> list(String nomeFiltro, Pageable pageable) {
+        Page<Artista> page = nomeFiltro != null
+                ? artistaRepository.findByNomeContainingIgnoreCase(nomeFiltro, pageable)
+                : artistaRepository.findAll(pageable);
 
         List<ArtistaDTO> dtos = page.getContent()
                 .stream()
