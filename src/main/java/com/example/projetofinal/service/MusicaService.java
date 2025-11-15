@@ -31,7 +31,9 @@ public class MusicaService {
     private GeneroRepository generoRepository;
 
     public Page<MusicaDTO> list(String nomeFiltro, Pageable pageable) {
-        Page<Musica> musicasPage = musicaRepository.findByNomeContainingIgnoreCase(nomeFiltro, pageable);
+        Page<Musica> musicasPage = nomeFiltro != null
+                ? musicaRepository.findByNomeContainingIgnoreCase(nomeFiltro, pageable)
+                : musicaRepository.findAll(pageable);
 
         return new PageImpl<>(
                 musicasPage.getContent()

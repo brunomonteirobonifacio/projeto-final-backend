@@ -20,7 +20,9 @@ public class GeneroService {
     private GeneroRepository generoRepository;
 
     public Page<GeneroDTO> list(String nomeFiltro, Pageable pageable) {
-        Page<Genero> generosPage = generoRepository.findByNomeContainingIgnoreCase(nomeFiltro, pageable);
+        Page<Genero> generosPage = nomeFiltro != null
+                ? generoRepository.findByNomeContainingIgnoreCase(nomeFiltro, pageable)
+                : generoRepository.findAll(pageable);
 
         return new PageImpl<>(
                 generosPage.getContent()

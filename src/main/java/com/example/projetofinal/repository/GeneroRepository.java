@@ -8,6 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.UUID;
 
 public interface GeneroRepository extends JpaRepository<Genero, UUID> {
-
     Page<Genero> findByNomeContainingIgnoreCase(String nome, Pageable pageable);
 }
